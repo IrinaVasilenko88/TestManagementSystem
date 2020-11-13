@@ -1,7 +1,7 @@
-package manager;
+package ru.netology.crud.manager;
 
-import domain.Issue;
-import repository.IssueRepository;
+import ru.netology.crud.domain.Issue;
+import ru.netology.crud.repository.IssueRepository;
 
 import java.util.ArrayList;
 import java.util.List;

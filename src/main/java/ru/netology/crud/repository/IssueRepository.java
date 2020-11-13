@@ -1,6 +1,6 @@
-package repository;
+package ru.netology.crud.repository;
 
-import domain.Issue;
+import ru.netology.crud.domain.Issue;
 import lombok.Data;
 
 import java.util.ArrayList;

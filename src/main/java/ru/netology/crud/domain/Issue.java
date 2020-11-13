@@ -1,4 +1,4 @@
-package domain;
+package ru.netology.crud.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

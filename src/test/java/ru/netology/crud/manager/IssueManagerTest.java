@@ -1,13 +1,12 @@
-package manager;
+package ru.netology.crud.manager;
 
-import domain.Issue;
+import ru.netology.crud.domain.Issue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.IssueRepository;
+import ru.netology.crud.repository.IssueRepository;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
