@@ -4,20 +4,22 @@ import domain.Issue;
 import repository.IssueRepository;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class IssueManager {
     private IssueRepository repository;
-    private Collection<Issue> issues = new ArrayList<>();
+    private List<Issue> issues = new ArrayList<>();
 
-    public Issue filterByAuthor(Predicate<Issue> author) {
+    public List<Issue> filterByAuthor(Predicate<Issue> author) {
+        List<Issue> issues = repository.getAll();
+        List<Issue> temp = new ArrayList<>();
         for (Issue issue : issues) {
-            if (issue.getAuthor().equals(author)) {
-                return issue;
+            if (author.test(issue.getAuthor())) {
+                temp.add(issue);
             }
         }
-        return null;
+        return temp;
     }
 
     public Issue filterByLabel(Predicate<Issue> label) {

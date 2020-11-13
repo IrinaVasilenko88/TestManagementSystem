@@ -1,29 +1,27 @@
 package domain;
 
-import java.util.HashSet;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class Issue implements Predicate <Issue> {
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+
+public class Issue  {
     private int id;
     private boolean open;
-    private String author;
+    private Set<String> author;
     private int date;
-    private Set<String> label = new HashSet<>();
+    private Set<String> label;
     private String projects;
     private String milestones;
-    private Set<String> assignee = new HashSet<>();
-
-    public Issue(int id, boolean open, String author, int date, Set<String> label, String projects, String milestones, Set<String> assignee) {
-        this.id = id;
-        this.open = open;
-        this.author = author;
-        this.date = date;
-        this.label = label;
-        this.projects = projects;
-        this.milestones = milestones;
-        this.assignee = assignee;
-    }
+    private Set<String> assignee;
 
 
     public int getId() {
@@ -42,13 +40,14 @@ public class Issue implements Predicate <Issue> {
         this.open = open;
     }
 
-    public String getAuthor() {
+    public Set<String> getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Set<String> author) {
         this.author = author;
     }
+
     public int getDate() {
         return date;
     }
@@ -89,9 +88,6 @@ public class Issue implements Predicate <Issue> {
         this.assignee = assignee;
     }
 
-    @Override
-    public boolean test(Issue issue) {
-        return false;
-    }
+
 
 }
