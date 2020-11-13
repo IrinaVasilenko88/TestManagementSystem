@@ -5,38 +5,46 @@ import repository.IssueRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class IssueManager {
     private IssueRepository repository;
-    private List<Issue> issues = new ArrayList<>();
 
-    public List<Issue> filterByAuthor(Predicate<Issue> author) {
-        List<Issue> issues = repository.getAll();
+    public IssueManager(IssueRepository repository) {
+        this.repository = repository;
+    }
+
+    public void add(Issue issue) {
+        repository.add(issue);
+    }
+
+    public List<Issue> finsAll() {
+        return repository.getAll();
+    }
+
+    public List<Issue> filterByAuthor(String author) {
+        Predicate<Issue> filterByAuthorPredicate = t -> t.getAuthor().equals(author);
+        return filterBy(filterByAuthorPredicate);
+    }
+
+    public List<Issue> filterByLabel(Set<String> label) {
+        Predicate<Issue> filterByLabelPredicate = t -> t.getLabel().equals(label);
+        return filterBy(filterByLabelPredicate);
+    }
+
+    public List<Issue> filterByAssignee(Set<String> assignee) {
+        Predicate<Issue> filterByAssigneePredicate = t -> t.getAssignee().equals(assignee);
+        return filterBy(filterByAssigneePredicate);
+    }
+
+    public List<Issue> filterBy(Predicate<Issue> issuePredicate) {
         List<Issue> temp = new ArrayList<>();
-        for (Issue issue : issues) {
-            if (author.test(issue.getAuthor())) {
+        for (Issue issue : repository.getAll()) {
+            if (issuePredicate.test(issue)) {
                 temp.add(issue);
             }
         }
         return temp;
-    }
-
-    public Issue filterByLabel(Predicate<Issue> label) {
-        for (Issue issue : issues) {
-            if (issue.getLabel().equals(label)) {
-                return issue;
-            }
-        }
-        return null;
-    }
-
-    public Issue filterByAssignee(Predicate<Issue> assignee) {
-        for (Issue issue : issues) {
-            if (issue.getAssignee().equals(assignee)) {
-                return issue;
-            }
-        }
-        return null;
     }
 }
