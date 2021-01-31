@@ -19,7 +19,7 @@ public class IssueManager {
         repository.add(issue);
     }
 
-    public List<Issue> finsAll() {
+    public List<Issue> findAll() {
         return repository.getAll();
     }
 
